@@ -1,0 +1,14 @@
+name: Learn gitHub actions
+
+on: [push]
+
+jobs:
+    print-html-content:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4              
+            
+            - name: Print HTML content
+              run: cat index.html 
+ 
