@@ -1,4 +1,4 @@
-name: Learn gitHub actions
+name: Learn-gitHub-actions
 
 on: [push]
 
@@ -11,4 +11,6 @@ jobs:
             
             - name: Print HTML content
               run: cat index.html 
+            - name: List file
+              run: ls -la
  
