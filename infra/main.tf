@@ -72,12 +72,12 @@ resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy" {
 #Upload the function code in a zip file
 
 resource "aws_lambda_function" "func" {
-  function_name     = "lambda_function"
+  function_name     = "lambda-function"
   description       = "Lambda execution Function"
-  handler           = "lambda_function.lambda_handler"
+  handler           = "lambda-function.lambda_handler"
   runtime           = "python3.11"
   role              = aws_iam_role.lambda_role.arn
-  filename          = "${path.module}/../project_files/lambda_function.zip"
+  filename          = "${path.module}/../project_files/lambda-function.zip"
   timeout           = 10
 }
 output "aws_lambda_function" {
