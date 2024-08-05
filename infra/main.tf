@@ -1,12 +1,12 @@
-# Backend configuration for Terraform Cloud 
+#Backend configuration for Terraform Cloud 
 terraform {
-  cloud {
-    organization = "Shirubia"
+ cloud {
+   organization = "Shirubia"
 
-    workspaces {
-      name = "Cloud-Resume-API-"
-    }
-  }
+   workspaces {
+     name = "CloudTest"
+   }
+ }
 }
 terraform {
   required_providers {
@@ -25,7 +25,7 @@ provider "aws" {
 
 # Create an IAM Role for Lambda Execution
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambdaExecutionRole"
+  name               = "lambdaRole"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution_role" {
 }
 
 #Create a policy to provide DynamoDB full access
-resource "aws_iam_policy" "dynamodb_full_access" {
+resource "aws_iam_policy" "lambda_dynamodb_policy" {
   name   = "DynamoAccessPolicy"
   policy = jsonencode({
     Version = "2012-10-17",
@@ -66,7 +66,7 @@ resource "aws_iam_policy" "dynamodb_full_access" {
 # Attach the DynamoDB policy to the Lambda execution role
 resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy" {
   role       = aws_iam_role.lambda_role.name  
-  policy_arn = aws_iam_policy.dynamodb_full_access.arn   
+  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn   
 }
 
 #Upload the function code in a zip file
