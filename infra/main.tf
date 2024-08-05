@@ -71,7 +71,7 @@ resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy" {
 
 #Upload the function code in a zip file
 
-resource "aws_lambda_function" "function" {
+resource "aws_lambda_function" "func" {
   function_name     = "lambda_function"
   description       = "Lambda execution Function"
   handler           = "lambda_function.lambda_handler"
@@ -81,7 +81,7 @@ resource "aws_lambda_function" "function" {
   timeout           = 10
 }
 output "aws_lambda_function" {
-  value = aws_lambda_function.function.function_name
+  value = aws_lambda_function.func.function_name
 }
 #Create a REST API in API Gateway
 resource "aws_api_gateway_rest_api" "api" {
@@ -108,14 +108,14 @@ resource "aws_api_gateway_integration" "integration" {
   http_method             = aws_api_gateway_method.get_method.http_method  
   integration_http_method = "POST"  
   type        = "AWS_PROXY"
-  uri= aws_lambda_function.function.invoke_arn
+  uri= aws_lambda_function.func.invoke_arn
 }
 
 #Allow API Gateway to invoke the Lambda Function
 resource "aws_lambda_permission" "api" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.function.function_name
+  function_name = aws_lambda_function.func.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
 }
