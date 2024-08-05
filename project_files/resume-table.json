@@ -1,0 +1,123 @@
+{
+    
+      "id": {"S": "1"},
+      "basics": {
+        "M": {
+          "name": {"S": "Sylvia Njoki Waweru"},
+          "label": {"S": "Cloud Engineer"},
+          "image": {"S": ""},
+          "email": {"S": "sylvia.waweru@gmail.com"},
+          "phone": {"S": "(254) 722143317"},
+          "summary": {"S": "I am a Cloud enthusiast with a desire to learn and build my hands-on Cloud Computing skills"},
+          "location": {
+            "M": {
+              "address": {"S": "Lakeview"},
+              "postalCode": {"S": "20117"},
+              "city": {"S": "Naivasha"},
+              "countryCode": {"S": "Kenya"}
+            }
+          }
+        }
+      },
+      "education": {
+        "L": [
+          {
+            "M": {
+              "institution": {"S": "Ajira Digital"},
+              "url": {"S": "https://ajiradigital.go.ke/"},
+              "area": {"S": "AWS re/Start Program"},
+              "studyType": {"S": "Apprenticeship"},
+              "startDate": {"S": "2024-01-05"},
+              "endDate": {"S": "2024-04-31"},
+              "score": {"S": "Ranked a gold student"},
+              "courses": {
+                "L": [
+                  {"S": "AWS Certified Cloud Practitioner course"}
+                ]
+              }
+            }
+           
+          },
+          {
+            "M": {
+              "institution": {"S": "Kenyatta University"},
+              "url": {"S": "https://www.ku.ac.ke/"},
+              "area": {"S": "Analytical Chemistry"},
+              "studyType": {"S": "Bachelor"},
+              "startDate": {"S": "2008-01-09"},
+              "endDate": {"S": "2013-01-12"},
+              "score": {"S": "Second class Honors Upper Division"}
+            }
+          }
+        ]
+      },  
+      "certificates": {
+        "L": [
+          {
+            "M": {
+              "name": {"S": "AWS Certified Cloud Practitioner"},
+              "start date": {"S": "2024-04-18"},
+              "expiration date": {"S": "2027-04-18"},
+              "issuer": {"S": "Amazon Web Services"},
+              "url": {"S": "https://cp.certmetrics.com/amazon/en/credentials/status/2822543"}
+            }
+          }
+        ]
+      },
+      "skills": {
+        "L": [
+          {
+            "M": {
+              "name": {"S": "Web Development"},
+              "level": {"S": "Beginner"},
+              "keywords": {
+                "L": [
+                  {"S": "HTML"},
+                  {"S": "CSS"},
+                  {"S": "JavaScript"}
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "projects": {
+        "L": [
+          {
+            "M": {
+              "name": {"S": "Cloud Resume Project"},
+              "startDate": {"S": "2024-06-01"},
+              "endDate": {"S": "2024-06-30"},
+              "description": {"S": "The project involved hosting a static website on S3 and distributing it with CloudFront and hosting it on Route53."},
+              "url": {"S": "https://github.com/karungar/deploy-a-static-website-to-S3"}
+            }
+          },
+          {
+            "M": {
+              "name": {"S": "Cloud Resume API Challenge"},
+              "startDate": {"S": "2024-07-01"},
+              "endDate": {"S": "2024-07-31"},
+              "description": {"S": "The project involved building and deploying a serverless API using AWS Lambda and DynamoDB and integrating it with GitHub actions. I used Terraform as Infrastructure as Code tool to provision the AWS resources as code"},
+              "url": {"S": "https://cloudresumeapi.dev/aws/"}
+            }
+          }  
+        ]
+      },
+      "languages": {
+        "L": [
+          {
+            "M": {
+              "language": {"S": "English"},
+              "Proficiency": {"S": "Fluent"}
+            }
+          },
+          {
+            "M": {
+              "Language": {"S": "Japanese"},
+              "Proficiency": {"S": "JLPT N4"}
+            }
+          }  
+       ]
+      }
+    }  
+ 

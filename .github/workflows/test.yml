@@ -1,16 +1,22 @@
-name: Learn-gitHub-actions
-
-on: [push]
-
+name: cloud resume api
+on:
+    push:
+        branches: [main]
 jobs:
-    print-html-content:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4              
-            
-            - name: Print HTML content
-              run: cat index.html 
-            - name: List file
-              run: ls -la
- 
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      
+    steps:
+        - name: Checkout Code
+          uses: actions/checkout@v2
+        - name: Upload JSON Data to DynamoDB
+          run: |
+            aws dynamodb put-item \
+              --table-name resume \
+              --item file://project_files/resume-table.json \
+              --region ${{ secrets.AWS_REGION }}   
