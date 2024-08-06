@@ -8,7 +8,7 @@
           "image": {"S": ""},
           "email": {"S": "sylvia.waweru@gmail.com"},
           "phone": {"S": "(254) 722143317"},
-          "summary": {"S": "I am a Cloud enthusiast with a desire to learn and build my hands-on Cloud Computing skills"},
+          "summary": {"S": "I am a Cloud enthusiast with a desire to learn and build my hands-on Cloud Computing skills. A certified AWS Cloud Practitioner seasoned with hands-on skills to build highly available and scalable web applications using AWS. Experience in Terraform, CI/CD using GitHub actions, and AWS Security best Practices."},
           "location": {
             "M": {
               "address": {"S": "Lakeview"},
@@ -19,14 +19,34 @@
           }
         }
       },
+      "professional experience": {
+        "L": [
+          {
+            "M": {
+              "institution": {"S": "CloudmyTribe"},
+              "position": {"S": "Community member"},
+              "startDate": {"S": "2024-05"},
+              "endDate": {"S": "present"},
+              "description":  {
+                "L": [
+                  {"S": "Built a serverless web application using AWS Lambda, API Gateway, and DynamoDB"},
+                  {"S": "Used Terraform to automate infrastructure provisioning on AWS, reducing deployment time by 50%"},
+                  {"S": "Integrated logging and monitoring solutions with AWS CloudWatch, providing real-time insights and troubleshooting capabilities"},
+                  {"S": "Built a static website with AWS simple Storage Service, Cloud Front, and Route53"}
+                ]
+              } 
+            }
+          }
+        ]
+      },  
       "education": {
         "L": [
           {
             "M": {
               "institution": {"S": "Ajira Digital"},
               "url": {"S": "https://ajiradigital.go.ke/"},
-              "area": {"S": "AWS re/Start Program"},
-              "studyType": {"S": "Apprenticeship"},
+              "area": {"S": "AWS Cloud Foundations"},
+              "studyType": {"S": "AWS re/ Start Cohort 9"},
               "startDate": {"S": "2024-01-05"},
               "endDate": {"S": "2024-04-31"},
               "score": {"S": "Ranked a gold student"},
@@ -36,7 +56,6 @@
                 ]
               }
             }
-           
           },
           {
             "M": {
@@ -68,6 +87,21 @@
         "L": [
           {
             "M": {
+              "name": {"S": "AWS Services"},
+              "level": {"S": "Foundational"},
+              "keywords": {
+                "L": [
+                  {"S": "Amazon S3"},
+                  {"S": "AWS Lambda"},
+                  {"S": "AWS API gateway"},
+                  {"S": "AWS CloudFront"},
+                  {"S":"AWS Dynamodb"}
+                ]
+              }
+            }
+          },
+          {
+            "M": {
               "name": {"S": "Web Development"},
               "level": {"S": "Beginner"},
               "keywords": {
@@ -78,6 +112,23 @@
                 ]
               }
             }
+          },
+          {
+           "M": {
+              "name": {"S": "Infrastructure as Code with Terraform"},
+              "level": {"S": "Beginner"}
+            } 
+          },
+          {
+              "M": {
+                 "name": {"S": "CI/CD Pipeline using Github Actions"},
+                 "level": {"S": "Beginner"}
+               } 
+          },
+          {
+              "M": {
+                 "name": {"S": "Interpersonal and Networking skills"}
+               } 
           }
         ]
       },
@@ -118,6 +169,6 @@
             }
           }  
        ]
-      }
-    }  
+    }
+}  
  

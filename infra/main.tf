@@ -43,11 +43,43 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-#Attach the necessary policies to the Lambda execution role
-resource "aws_iam_role_policy_attachment" "lambda_basic_execution_role" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  role       = aws_iam_role.lambda_role.name
-}
+# Create an iam policy for dynamodb
+# resource "aws_iam_policy" "iam_policy_for_resume_project" {
+
+#   name        = "aws_iam_policy_for_terraform_resume_project_policy"
+#   path        = "/"
+#   description = "AWS IAM Policy for managing the resume project role"
+#     policy = jsonencode(
+#     {
+#       "Version" : "2012-10-17",
+#       "Statement" : [
+#         {
+#           "Action" : [
+#             "logs:CreateLogGroup",
+#             "logs:CreateLogStream",
+#             "logs:PutLogEvents"
+#           ],
+#           "Resource" : "arn:aws:logs:*:*:*",
+#           "Effect" : "Allow"
+#         },
+#         {
+#           "Effect" : "Allow",
+#           "Action" : [
+#             "dynamodb:UpdateItem",
+# 			      "dynamodb:GetItem"
+#           ],
+#           "Resource" : "arn:aws:dynamodb:*:*:table/resume-challenge"
+#         },
+#       ]
+#   })
+# }
+
+
+# #Attach the necessary policies to the Lambda execution role
+# resource "aws_iam_role_policy_attachment" "lambda_basic_execution_role" {
+#   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+#   role       = aws_iam_role.lambda_role.name
+# }
 
 #Create a policy to provide DynamoDB full access
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
@@ -83,6 +115,19 @@ resource "aws_lambda_function" "func" {
 output "aws_lambda_function" {
   value = aws_lambda_function.func.function_name
 }
+# resource "aws_lambda_function_url" "url1" {
+#   function_name      = aws_lambda_function.myfunc.function_name
+#   authorization_type = "NONE"
+# }  
+#   cors {
+#     allow_credentials = true
+#     allow_origins     = ["*"]
+#     allow_methods     = ["*"]
+#     allow_headers     = ["date", "keep-alive"]
+#     expose_headers    = ["keep-alive", "date"]
+#     max_age           = 86400
+#   }
+# }
 #Create a REST API in API Gateway
 resource "aws_api_gateway_rest_api" "api" {
   name          = "resume_api"
