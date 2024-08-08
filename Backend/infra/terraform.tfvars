@@ -1,3 +1,3 @@
 access_key = ""
 secret_key = ""
-region = ""
+aws_region = ""
