@@ -164,7 +164,7 @@
           },
           {
             "M": {
-              "Language": {"S": "Japanese"},
+              "language": {"S": "Japanese"},
               "Proficiency": {"S": "JLPT N4"}
             }
           }  

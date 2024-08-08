@@ -7,3 +7,4 @@ variable "secret_key" {
 variable "region" {
     description = "Region"
 }
+

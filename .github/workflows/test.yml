@@ -20,3 +20,5 @@ jobs:
               --table-name resume-table \
               --item file://Backend/restart-table.json \
               --region ${{ secrets.AWS_REGION }}
+
+              

@@ -22,60 +22,6 @@ provider "aws" {
     access_key  =var.access_key
     secret_key  =var.secret_key
 }    
-
-# resource "aws_s3_bucket" "bucket" {
-#   bucket = "myblogexample-${random_string.random.result}"
-#   force_destroy = true
-# }
-# resource "aws_s3_bucket_website_configuration" "blog" {
-#   bucket = aws_s3_bucket.bucket.id
-#   index_document {
-#     suffix = "index.html"
-#   }
-#   error_document {
-#     key = "error.html"
-#   }
-# }
-# resource "aws_s3_bucket_public_access_block" "public_access_block" {
-#   bucket = aws_s3_bucket.bucket.id
-#   block_public_acls       = false
-#   block_public_policy     = false
-#   ignore_public_acls      = false
-#   restrict_public_buckets = false
-# }
-
-# resource "aws_s3_object" "upload_object" {
-#   for_each      = fileset("${path.module}/../html", "*")
-#   bucket        = aws_s3_bucket.bucket.bucket
-#   key           = each.value
-#   source        = "${path.module}/../html/${each.value}"
-#   etag          = filemd5("${path.module}/../html/${each.value}")
-#   content_type  = "text/html"
-# }
-
-# resource "aws_s3_bucket_policy" "read_access_policy" {
-#   bucket = aws_s3_bucket.bucket.id
-#   policy = <<POLICY
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#     {
-#       "Sid": "PublicReadGetObject",
-#       "Effect": "Allow",
-#       "Principal": "*",
-#       "Action": [
-#         "s3:GetObject"
-#       ],
-#       "Resource": [
-#         "${aws_s3_bucket.bucket.arn}",
-#         "${aws_s3_bucket.bucket.arn}/*"
-#       ]
-#     }
-#   ]
-# }
-# POLICY
-# }
-
 # Create an IAM Role for Lambda Execution
 resource "aws_iam_role" "lambda_role" {
   name               = "lambdaRole"
@@ -95,45 +41,6 @@ resource "aws_iam_role" "lambda_role" {
 }
 EOF
 }
-
-# Create an iam policy for dynamodb
-# resource "aws_iam_policy" "iam_policy_for_resume_project" {
-
-#   name        = "aws_iam_policy_for_terraform_resume_project_policy"
-#   path        = "/"
-#   description = "AWS IAM Policy for managing the resume project role"
-#     policy = jsonencode(
-#     {
-#       "Version" : "2012-10-17",
-#       "Statement" : [
-#         {
-#           "Action" : [
-#             "logs:CreateLogGroup",
-#             "logs:CreateLogStream",
-#             "logs:PutLogEvents"
-#           ],
-#           "Resource" : "arn:aws:logs:*:*:*",
-#           "Effect" : "Allow"
-#         },
-#         {
-#           "Effect" : "Allow",
-#           "Action" : [
-#             "dynamodb:UpdateItem",
-# 			      "dynamodb:GetItem"
-#           ],
-#           "Resource" : "arn:aws:dynamodb:*:*:table/resume-challenge"
-#         },
-#       ]
-#   })
-# }
-
-
-# #Attach the necessary policies to the Lambda execution role
-# resource "aws_iam_role_policy_attachment" "lambda_basic_execution_role" {
-#   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-#   role       = aws_iam_role.lambda_role.name
-# }
-
 #Create a policy to provide DynamoDB full access
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
   name   = "Dynamodb_Policy"
@@ -168,10 +75,10 @@ resource "aws_lambda_function" "func" {
 output "aws_lambda_function" {
   value = aws_lambda_function.func.function_name
 }
-# resource "aws_lambda_function_url" "url1" {
-#   function_name      = aws_lambda_function.myfunc.function_name
-#   authorization_type = "NONE"
-# }  
+resource "aws_lambda_function_url" "url1" {
+  function_name      = aws_lambda_function.myfunc.function_name
+  authorization_type = "NONE"
+}  
 #   cors {
 #     allow_credentials = true
 #     allow_origins     = ["*"]
