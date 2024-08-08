@@ -17,6 +17,6 @@ jobs:
         - name: Upload JSON Data to DynamoDB
           run: |
             aws dynamodb put-item \
-              --table-name restart-table \
+              --table-name resume-table \
               --item file://Backend/restart-table.json \
               --region ${{ secrets.AWS_REGION }}
