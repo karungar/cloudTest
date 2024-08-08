@@ -19,4 +19,4 @@ jobs:
             aws dynamodb put-item \
               --table-name restart-table \
               --item file://Backend/restart-table.json \
-              --region ${{ secrets.AWS_REGION }}   
+              --region ${{ secrets.AWS_REGION }}
