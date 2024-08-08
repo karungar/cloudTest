@@ -18,7 +18,7 @@ jobs:
           run: |
             aws dynamodb put-item \
               --table-name resume-table \
-              --item file://Backend/restart-table.json \
+              --item file://backend/restart-table.json \
               --region ${{ secrets.AWS_REGION }}
 
               
