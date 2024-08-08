@@ -4,7 +4,7 @@ import boto3
 
 def lambda_handler(event, context):
     client=boto3.resource('dynamodb')
-    table=client.Table('resume')
+    table=client.Table('restart-table')
     try:
         response=table.scan()
         items=response['Items']
