@@ -24,7 +24,7 @@ provider "aws" {
 }    
 # Create an IAM Role for Lambda Execution
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambdaRole"
+  name               = "mylambdaRole"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -64,21 +64,14 @@ resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy" {
 #Upload the function code in a zip file
 
 resource "aws_lambda_function" "func" {
-  function_name     = "lambda-function"
+  function_name     = "resume-function"
   description       = "Lambda execution Function"
   handler           = "lambda-function.lambda_handler"
   runtime           = "python3.11"
   role              = aws_iam_role.lambda_role.arn
-  filename          = "${path.module}/../project_files/lambda-function.zip"
+  filename          = "${path.module}/../Backend/lambda-function.zip"
   timeout           = 10
 }
-output "aws_lambda_function" {
-  value = aws_lambda_function.func.function_name
-}
-resource "aws_lambda_function_url" "url1" {
-  function_name      = aws_lambda_function.myfunc.function_name
-  authorization_type = "NONE"
-}  
 #   cors {
 #     allow_credentials = true
 #     allow_origins     = ["*"]
@@ -90,7 +83,7 @@ resource "aws_lambda_function_url" "url1" {
 # }
 #Create a REST API in API Gateway
 resource "aws_api_gateway_rest_api" "api" {
-  name          = "resume_api"
+  name          = "resumeapi"
   description   = "Cloud resume API Challenge"
 
   endpoint_configuration {
@@ -144,8 +137,3 @@ resource "aws_api_gateway_stage" "stage" {
   deployment_id = aws_api_gateway_deployment.api_gateway_deployment.id 
   rest_api_id = aws_api_gateway_rest_api.api.id
 }
-
-output "aws_api_gateway" {
-  value = aws_api_gateway_rest_api.api.name
-}
-

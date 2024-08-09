@@ -1,54 +1,24 @@
 import json
 import boto3
-import logging
 
-# Set up logging
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
-    dynamodb_client = boto3.resource('dynamodb')
-    dynamodb_table = dynamodb_client.Table('resume-table')
-    
+    client=boto3.resource('dynamodb')
+    table=client.Table('resume-table')
     try:
-        # Fetch the item by its primary key
-        response = dynamodb_table.get_item(Key={'id': '1'})
-        
-        if 'Item' not in response:
-            return {
-                'statusCode': 404,
-                'body': json.dumps({'error': 'Item not found'})
-            }
-        
-        item = response['Item']
-        
-        # Log the current views count
-        current_views_count = int(item['viewsCount'])
-        logger.info(f"Current views count: {current_views_count}")
-        
-        # Increment the views count
-        views_count = current_views_count + 1
-        item['viewsCount'] = views_count
-        
-        # Update the item in DynamoDB
-        dynamodb_table.put_item(Item=item)
-        
-        # Log the new views count
-        logger.info(f"New views count: {views_count}")
-        
-        # Return the items in the response body as a JSON string 
+        response=table.scan()
+        items=response['Items']
         return {
             'headers': {
             'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': 'https://d1mnfk26f2dvgk.cloudfront.net',   # CloudFront DNS
+            'Access-Control-Allow-Origin': 'https://d21ac3wl4s2i31.cloudfront.net',   # CloudFront DNS
             'Access-Control-Allow-Methods': 'OPTIONS,GET'
             },
             'statusCode': 200,
-            'body': json.dumps(item, default=str) 
+            'body': json.dumps(items)
         }
     except Exception as e:
-        return {
+        return{
             'statusCode': 500,
-            'body': f'Error: {str(e)}'
-        }            
-            
+            'body': f'Error:{str(e)}'
+            }

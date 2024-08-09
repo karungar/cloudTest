@@ -2,7 +2,7 @@
 async function displayResume() {
     try {
         // Fetch the JSON data
-        const response = await fetch('https://5q5rkjfar2adf66frm5p3nnioi0taxfd.lambda-url.us-west-2.on.aws/url');
+        const response = await fetch('https://u73ofpmucloq3jetuvq4y2d3oe0hddsz.lambda-url.us-west-2.on.aws/');
 
         // Check if the response is successful
         if (!response.ok) {
