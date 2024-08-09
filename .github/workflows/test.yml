@@ -18,7 +18,7 @@ jobs:
           run: |
             aws dynamodb put-item \
               --table-name resume-table \
-              --item file://backend/sylvia.json \
+              --item file://Backend/sylvia.json \
               --region ${{ secrets.AWS_REGION }}
 
               
