@@ -4,7 +4,7 @@ variable "access_key" {
 variable "secret_key" {
     description = "Secret key to the AWS console"
 }
-variable "aws_region" {
+variable "region" {
     description = "Region"
 }
 
