@@ -4,7 +4,7 @@ terraform {
    organization = "Shirubia"
 
    workspaces {
-     name = "TestAPI"
+     name = "sylviaResume"
    }
  }
 }
